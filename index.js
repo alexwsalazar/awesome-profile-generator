@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const output = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./utils/generateSampleHTML");
+const render = require("./lib/generateHTML");
 
 // Empty array for team objects 
 const employeeArr = [];
