@@ -116,5 +116,48 @@ const init = async () => {
  //Conditional statement to get to role specific questions
 
  if (role === "Manager"){
-   
+   const managerQ = await inquirer.prompt(managerRole);
+   const office = managerQ.officeNumber;
+
+   // makes object for manager
+
+   const manager = new Manager(name, id, email, office);
+   employeeArr.push(manager);
+ } else if (role === "Engineer"){
+   const engineerQ = await inquirer.prompt(engineerRole);
+   const github = engineerQ.github;
+
+   // makes object for engineer
+
+   const engineer = new Engineer(name, id, email, github);
+   employeeArr.push(engineer);
+ } else if  (role === "Intern"){
+   const internQ = await inquirer.prompt(internRole);
+   const school = internQ.school;
+
+  ///  makes object for intern 
+   const intern = new Intern(name, email, id, school);
+   employeeArr.push(intern);
+  
+ }
+
+ // promt to add more employees 
+ const newEmployee = await inquirer.prompt(anotherEmployee);
+ const yesOrno = newEmployee.another;
+
+ if (yesOrno){
+   init();
+ } else {
+   console.log('you have succesfully built your team!');
+   console.log(employeeArr);
+   //after the user has input all employees desired, call the 'generate' function
+   // and pass in an array with all employee objects
+
+   const teamForm = generate(employeeArr);
+   ///create an html file ising the html returned from the "generate"  function using the variable 
+   /// "outputPath above. "
+
+   fs.writeFile(outputPath, teamForm, error =>{
+     if (error) throw error;
+   })
  }
