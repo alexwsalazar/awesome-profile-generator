@@ -1,5 +1,5 @@
 // TODO: Include packages needed for this application
-const inquirer = ("loop", require("inquirer-loop")(inquirer));
+const inquirer = require(inquirer);
 const fs = require('fs');
 const generateSampleHTML = require("./utils/generateSampleHTML")
 
