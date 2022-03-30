@@ -106,3 +106,15 @@ const anotherEmployee =
 };
 
 // Init function to start inquirer.prompt
+const init = async () => {
+  console.log('Please answer the following questions to build your team.');
+
+  const generalQ = await inquirer.prompt(employeeQuestions);
+  // create object for classes 
+  const {name, id, email, role} = generalQ
+}
+ //Conditional statement to get to role specific questions
+
+ if (role === "Manager"){
+   
+ }
