@@ -6,9 +6,9 @@ const path = require("path")
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const output = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/generateHTML");
+const generate = require("./lib/generateHTML");
 
 // Empty array for team objects 
 const employeeArr = [];
@@ -20,7 +20,7 @@ const managerRole = {
   name: "officeNumber",
   message: "what is their office number?",
   validate: answer => {
-    if (answer.length< 1){
+    if (answer.length< 1) {
       return "you need to enter an office number."
     } return true;
   }
@@ -33,7 +33,7 @@ const engineerRole = {
   message: "what is their Github user name",
   name: "github",
   validate: answer => {
-    if (answer.length < 1){
+    if (answer.length < 1) {
       return "you need to enter their username."
     } return true;
   }
@@ -47,7 +47,7 @@ const internRole = {
   name: "school",
   message: "what school do they attend?",
   validate: answer => {
-    if (answer.length < 1){
+    if (answer.length < 1) {
       return "you need to enter a school."
     } return true;
   }
@@ -66,6 +66,7 @@ const employeeQuestions = [
       } return true;
     }
   },
+
   {
     type: "input",
     name: "id",
@@ -76,6 +77,7 @@ const employeeQuestions = [
       } return true;
     }
   },
+
   {
     type: "input",
     name: "email",
@@ -88,6 +90,7 @@ const employeeQuestions = [
       };
     }
   },
+
   {
     type: "rawlist",
     name: "role",
@@ -112,7 +115,7 @@ const init = async () => {
   const generalQ = await inquirer.prompt(employeeQuestions);
   // create object for classes 
   const {name, id, email, role} = generalQ
-}
+
  //Conditional statement to get to role specific questions
 
  if (role === "Manager"){
@@ -145,7 +148,7 @@ const init = async () => {
  const newEmployee = await inquirer.prompt(anotherEmployee);
  const yesOrno = newEmployee.another;
 
- if (yesOrno){
+ if (yesOrno) {
    init();
  } else {
    console.log('you have succesfully built your team!');
@@ -157,7 +160,9 @@ const init = async () => {
    ///create an html file ising the html returned from the "generate"  function using the variable 
    /// "outputPath above. "
 
-   fs.writeFile(outputPath, teamForm, error =>{
+   fs.writeFile(outputPath, teamForm, error => {
      if (error) throw error;
-   })
- }
+    })
+  }
+}
+init()
