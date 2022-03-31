@@ -124,7 +124,7 @@ const init = async () => {
 
    // makes object for manager
 
-   const manager = new Manager(name, id, email, office);
+   const manager = new Manager(name, email, id,  office);
    employeeArr.push(manager);
  } else if (role === "Engineer"){
    const engineerQ = await inquirer.prompt(engineerRole);
@@ -132,7 +132,7 @@ const init = async () => {
 
    // makes object for engineer
 
-   const engineer = new Engineer(name, id, email, github);
+   const engineer = new Engineer(name, email, id, github);
    employeeArr.push(engineer);
  } else if  (role === "Intern"){
    const internQ = await inquirer.prompt(internRole);
@@ -160,9 +160,7 @@ const init = async () => {
    ///create an html file ising the html returned from the "generate"  function using the variable 
    /// "outputPath above. "
 
-   fs.writeFile(outputPath, teamForm, error => {
-     if (error) throw error;
-    })
+   fs.writeFileSync('team.html', generate(employeeArr))
   }
 }
 init()
